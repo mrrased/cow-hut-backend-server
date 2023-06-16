@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\logs\\winston\\errors\\.153b0e27e6c9829eaebefe1584f476270bb907de-audit.json",
+    "files": [
+        {
+            "date": 1686897682164,
+            "name": "E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\logs\\winston\\errors\\duck-2023-06-16-12-error.log",
+            "hash": "cbbb5559181937feabe545078ce7dca6b231608aacc7bd1a7b71f3eab0db30eb"
+        }
+    ],
+    "hashType": "sha256"
+}
