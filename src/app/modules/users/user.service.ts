@@ -1,5 +1,6 @@
 // import mongoose from 'mongoose';
 // import Config from '../../../Config';
+import httpStatus from 'http-status';
 import ApiError from '../../../errors/ApiError';
 // import { AcademicSemester } from '../academicSemester/academicSemester.Model';
 // import { IStudent } from '../student/student.interface';
@@ -107,8 +108,35 @@ const getSingleUser = async (id: string): Promise<IUser | null> => {
   return result;
 };
 
+const updateUser = async (
+  id: string,
+  payload: Partial<IUser>
+): Promise<IUser | null> => {
+  if (payload.name) {
+    if (!payload.name?.firstName) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'FirstName is required');
+    } else if (!payload.name?.lastName) {
+      throw new ApiError(httpStatus.BAD_REQUEST, 'LastName is required');
+    }
+  }
+
+  const result = await User.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+
+  return result;
+};
+
+const deleteUser = async (id: string): Promise<IUser | null> => {
+  const result = await User.findByIdAndDelete(id);
+
+  return result;
+};
+
 export const UserService = {
   craeteUser,
   getAllUsers,
   getSingleUser,
+  updateUser,
+  deleteUser,
 };
