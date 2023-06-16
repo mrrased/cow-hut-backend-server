@@ -1,11 +1,20 @@
-import { Model, Types } from 'mongoose';
-import { IStudent } from '../student/student.interface';
+import { Model } from 'mongoose';
+// import { IStudent } from '../student/student.interface';
 
 export type IUser = {
-  id: string;
+  phoneNumber: string;
   role: string;
   password: string;
-  student?: Types.ObjectId | IStudent;
+  name: {
+    firstName: string;
+    lastName: string;
+  };
+  address: string;
+  budget: number;
+  income: number;
+  // createdAt: string;
+  // updatedAt: string;
+  // student?: Types.ObjectId | IStudent;
   // faculty?:Types.ObjectId | IFaculty; Future
   // admin?:Types.ObjectId | IAdmin; Future
 };

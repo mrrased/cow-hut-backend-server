@@ -1,25 +1,55 @@
 import { Schema, model } from 'mongoose';
 import { IUser, UserModel } from './user.interface';
+import { role } from './user.Constant';
 
 const userSchema = new Schema<IUser>(
   {
-    id: {
+    phoneNumber: {
       type: String,
       required: true,
-      unique: true,
     },
     role: {
       type: String,
-      required: true,
+      enum: role,
     },
     password: {
       type: String,
       required: true,
     },
-    student: {
-      type: Schema.Types.ObjectId,
-      ref: 'Student',
+    name: {
+      type: {
+        firstName: {
+          type: String,
+          required: true,
+        },
+        lastName: {
+          type: String,
+          required: true,
+        },
+      },
     },
+    address: {
+      type: String,
+      required: true,
+    },
+    budget: {
+      type: Number,
+      required: true,
+    },
+    income: {
+      type: Number,
+      required: true,
+    },
+    // createdAt: {
+    //   type: String,
+    // },
+    // updatedAt: {
+    //   type: String,
+    // },
+    // student: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Student',
+    // },
     // faculty: {
     //   type: Schema.Types.ObjectId,
     //   ref: 'Faculty',
@@ -31,9 +61,9 @@ const userSchema = new Schema<IUser>(
   },
   {
     timestamps: true,
-    toJSON: {
-      virtuals: true,
-    },
+    // toJSON: {
+    //   virtuals: true,
+    // },
   }
 );
 

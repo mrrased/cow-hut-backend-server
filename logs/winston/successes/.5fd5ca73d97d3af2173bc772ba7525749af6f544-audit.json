@@ -1,0 +1,30 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\logs\\winston\\successes\\.5fd5ca73d97d3af2173bc772ba7525749af6f544-audit.json",
+    "files": [
+        {
+            "date": 1686913442220,
+            "name": "E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\logs\\winston\\successes\\Cow-2023-06-16-17-success.log",
+            "hash": "45ad1f429d583f9fec604cc8018a18bcebe04c3c1c169dc55c5b4950d647f969"
+        },
+        {
+            "date": 1686916858042,
+            "name": "E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\logs\\winston\\successes\\Cow-2023-06-16-18-success.log",
+            "hash": "5ce642c6438405da48f62bb7517b65ef21805ecd7493c627b33fa9ecb37e7a66"
+        },
+        {
+            "date": 1686931718682,
+            "name": "E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\logs\\winston\\successes\\Cow-2023-06-16-22-success.log",
+            "hash": "eb1db3c2e751ca6ae09ed88846b3d7ceda3fc3a49e2b8562470bed798deb19d4"
+        },
+        {
+            "date": 1686934873836,
+            "name": "E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\logs\\winston\\successes\\Cow-2023-06-16-23-success.log",
+            "hash": "e227ca823f7432f96a9072861a87b274a683d7a28ac32a9d749ed5de204b515a"
+        }
+    ],
+    "hashType": "sha256"
+}

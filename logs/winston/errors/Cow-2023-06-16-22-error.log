@@ -1,0 +1,56 @@
+{
+  service: 'user-service',
+  errors: {
+    id: ValidatorError: Path `id` is required.
+        at validate (E:\Programing Hero\New folder\Cow Hut Backend Server\node_modules\mongoose\lib\schematype.js:1349:13)
+        at SchemaString.SchemaType.doValidate (E:\Programing Hero\New folder\Cow Hut Backend Server\node_modules\mongoose\lib\schematype.js:1333:7)
+        at E:\Programing Hero\New folder\Cow Hut Backend Server\node_modules\mongoose\lib\document.js:2932:18
+        at processTicksAndRejections (node:internal/process/task_queues:77:11) {
+      properties: {
+        validator: [Function (anonymous)],
+        message: 'Path `id` is required.',
+        type: 'required',
+        path: 'id',
+        value: undefined
+      },
+      kind: 'required',
+      path: 'id',
+      value: undefined,
+      reason: undefined,
+      [Symbol(mongoose:validatorError)]: true
+    }
+  },
+  _message: 'User validation failed',
+  level: 'error',
+  message: 'GlobalErrorHander User validation failed: id: Path `id` is required.',
+  stack: 'ValidationError: User validation failed: id: Path `id` is required.\n' +
+    '    at model.Document.invalidate (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\document.js:3147:32)\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\document.js:2940:17\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\schematype.js:1352:9\n' +
+    '    at processTicksAndRejections (node:internal/process/task_queues:77:11)',
+  label: 'COW',
+  timestamp: '2023-06-16T16:08:53.910Z'
+}
+{
+  service: 'user-service',
+  index: 0,
+  code: 11000,
+  keyPattern: { id: 1 },
+  keyValue: { id: null },
+  level: 'error',
+  message: 'GlobalErrorHander E11000 duplicate key error collection: digital-cow-hut.users index: id_1 dup key: { id: null }',
+  stack: 'MongoServerError: E11000 duplicate key error collection: digital-cow-hut.users index: id_1 dup key: { id: null }\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongodb\\src\\operations\\insert.ts:85:25\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongodb\\src\\cmap\\connection_pool.ts:574:11\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongodb\\src\\sdam\\server.ts:368:13\n' +
+    '    at handleOperationResult (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongodb\\src\\sdam\\server.ts:502:14)\n' +
+    '    at Connection.onMessage (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongodb\\src\\cmap\\connection.ts:418:5)\n' +
+    '    at MessageStream.<anonymous> (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongodb\\src\\cmap\\connection.ts:243:56)\n' +
+    '    at MessageStream.emit (node:events:512:28)\n' +
+    '    at processIncomingData (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongodb\\src\\cmap\\message_stream.ts:187:12)\n' +
+    '    at MessageStream._write (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongodb\\src\\cmap\\message_stream.ts:68:5)\n' +
+    '    at writeOrBuffer (node:internal/streams/writable:392:12)',
+  label: 'COW',
+  timestamp: '2023-06-16T16:14:36.163Z',
+  [Symbol(errorLabels)]: Set(0) {}
+}

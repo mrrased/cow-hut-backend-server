@@ -4,7 +4,6 @@ import globalErrorHandler from './middlewares/globalErrorHandler';
 import routes from './app/routes';
 import httpStatus from 'http-status';
 const app: Application = express();
-// const port = 3000
 
 app.use(cors());
 
@@ -12,14 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Application routes
-// app.use('/api/v1/users/', UserRoutes);
-// app.use('/api/v1/academic-semesters', SemesterRoutes);
 app.use('/api/v1/', routes);
-// app.get('/', async (req: Request, res: Response, next: NextFunction) => {
-//   // throw new ApiError(400, 'api Error Message')
-//   next('apin Error message')
-// })
 
 // Global Error Handler
 app.use(globalErrorHandler);
