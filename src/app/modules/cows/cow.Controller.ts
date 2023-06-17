@@ -13,9 +13,9 @@ const createCow = catchAsync(async (req: Request, res: Response) => {
   const result = await CowService.craeteCow(cowData);
 
   sendResponse<ICow>(res, {
-    statusCode: httpStatus.OK,
     success: true,
-    message: 'Cow Created Successfully',
+    statusCode: httpStatus.OK,
+    message: 'Cow created successfully',
     data: result,
   });
 });
@@ -27,9 +27,9 @@ const getAllCow = catchAsync(async (req: Request, res: Response) => {
   const result = await CowService.getAllCow(filters, paginationOptions);
 
   sendResponse<ICow[]>(res, {
-    statusCode: httpStatus.OK,
     success: true,
-    message: 'Cows retrived Succesfully !',
+    statusCode: httpStatus.OK,
+    message: 'Cows retrieved successfully',
     meta: result.meta,
     data: result.data,
   });
@@ -41,9 +41,9 @@ const getSingleCow = catchAsync(async (req: Request, res: Response) => {
   const result = await CowService.getSingleCow(id);
 
   sendResponse<ICow>(res, {
-    statusCode: httpStatus.OK,
     success: true,
-    message: 'Student retrived Succesfully !',
+    statusCode: httpStatus.OK,
+    message: 'Cow retrieved successfully',
     data: result,
   });
 });
@@ -57,7 +57,7 @@ const updateCow = catchAsync(async (req: Request, res: Response) => {
   sendResponse<ICow>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Cow Updated Succesfully !',
+    message: 'Cow updated successfully',
     data: result,
   });
 });
@@ -70,7 +70,7 @@ const deleteCow = catchAsync(async (req: Request, res: Response) => {
   sendResponse<ICow>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Cow deleted Succesfully !',
+    message: 'Cow deleted successfully',
     data: result,
   });
 });

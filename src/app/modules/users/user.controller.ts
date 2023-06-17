@@ -12,21 +12,18 @@ const createUser = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Users Created Successfully',
+    message: 'Users created successfully',
     data: result,
   });
 });
 
 const getAllUsers = catchAsync(async (req: Request, res: Response) => {
-  // const filters = pick(req.query, studentFilterableFields);
-  // const paginationOptions = pick(req.query, paginationFields);
-
   const result = await UserService.getAllUsers();
 
   sendResponse<IUser[]>(res, {
-    statusCode: httpStatus.OK,
     success: true,
-    message: 'Student retrived Succesfully !',
+    statusCode: httpStatus.OK,
+    message: 'Users retrieved successfully',
     data: result,
   });
 });
@@ -37,9 +34,9 @@ const getSingleUser = catchAsync(async (req: Request, res: Response) => {
   const result = await UserService.getSingleUser(id);
 
   sendResponse<IUser>(res, {
-    statusCode: httpStatus.OK,
     success: true,
-    message: 'Semester retrived Succesfully !',
+    statusCode: httpStatus.OK,
+    message: 'User retrieved successfully',
     data: result,
   });
 });
@@ -51,9 +48,9 @@ const updateUser = catchAsync(async (req: Request, res: Response) => {
   const result = await UserService.updateUser(id, updatedData);
 
   sendResponse<IUser>(res, {
-    statusCode: httpStatus.OK,
     success: true,
-    message: 'Semester Updated Succesfully !',
+    statusCode: httpStatus.OK,
+    message: 'User updated successfully',
     data: result,
   });
 });
@@ -66,7 +63,7 @@ const deleteUser = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IUser>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Semester deleted Succesfully !',
+    message: 'Uers deleted successfully',
     data: result,
   });
 });
