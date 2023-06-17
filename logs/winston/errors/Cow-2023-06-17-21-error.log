@@ -1,0 +1,54 @@
+{
+  service: 'user-service',
+  level: 'error',
+  message: 'GlobalErrorHander Parameter "obj" to Document() must be an object, got "648dd3e4ab011fade0800c28" (type string)',
+  stack: 'ObjectParameterError: Parameter "obj" to Document() must be an object, got "648dd3e4ab011fade0800c28" (type string)\n' +
+    '    at model.Document (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\document.js:112:11)\n' +
+    '    at model.Model (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\model.js:122:12)\n' +
+    '    at new model (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\model.js:4607:15)\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\model.js:2851:16\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at Function.create (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\model.js:2840:38)\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\src\\app\\modules\\cows\\cow.Service.ts:79:32\n' +
+    '    at Generator.next (<anonymous>)\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\src\\app\\modules\\cows\\cow.Service.ts:8:71\n' +
+    '    at new Promise (<anonymous>)',
+  label: 'COW',
+  timestamp: '2023-06-17T15:41:17.601Z'
+}
+{
+  service: 'user-service',
+  level: 'error',
+  message: 'GlobalErrorHander Parameter "obj" to Document() must be an object, got "648dd3e4ab011fade0800c28" (type string)',
+  stack: 'ObjectParameterError: Parameter "obj" to Document() must be an object, got "648dd3e4ab011fade0800c28" (type string)\n' +
+    '    at model.Document (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\document.js:112:11)\n' +
+    '    at model.Model (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\model.js:122:12)\n' +
+    '    at new model (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\model.js:4607:15)\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\model.js:2851:16\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at Function.create (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\model.js:2840:38)\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\src\\app\\modules\\cows\\cow.Service.ts:79:32\n' +
+    '    at Generator.next (<anonymous>)\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\src\\app\\modules\\cows\\cow.Service.ts:8:71\n' +
+    '    at new Promise (<anonymous>)',
+  label: 'COW',
+  timestamp: '2023-06-17T15:51:22.788Z'
+}
+{
+  service: 'user-service',
+  level: 'error',
+  message: 'GlobalErrorHander Parameter "obj" to Document() must be an object, got "648dd3e4ab011fade0800c27" (type string)',
+  stack: 'ObjectParameterError: Parameter "obj" to Document() must be an object, got "648dd3e4ab011fade0800c27" (type string)\n' +
+    '    at model.Document (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\document.js:112:11)\n' +
+    '    at model.Model (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\model.js:122:12)\n' +
+    '    at new model (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\model.js:4607:15)\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\model.js:2851:16\n' +
+    '    at Array.map (<anonymous>)\n' +
+    '    at Function.create (E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\node_modules\\mongoose\\lib\\model.js:2840:38)\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\src\\app\\modules\\cows\\cow.Service.ts:79:32\n' +
+    '    at Generator.next (<anonymous>)\n' +
+    '    at E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\src\\app\\modules\\cows\\cow.Service.ts:8:71\n' +
+    '    at new Promise (<anonymous>)',
+  label: 'COW',
+  timestamp: '2023-06-17T15:56:07.808Z'
+}

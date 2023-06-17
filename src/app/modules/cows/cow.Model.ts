@@ -36,10 +36,11 @@ const cowSchema = new Schema<ICow>(
       type: String,
       enum: category,
     },
-    // seller: {
-    //   type: String,
-    //   required: true,
-    // },
+    seller: {
+      type: Schema.Types.ObjectId,
+      ref: 'users',
+      unique: true,
+    },
   },
   {
     timestamps: true,

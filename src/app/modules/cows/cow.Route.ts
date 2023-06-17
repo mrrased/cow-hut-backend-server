@@ -6,7 +6,7 @@ import { CowController } from './cow.Controller';
 const router = express.Router();
 
 router.post(
-  '/create-cow',
+  '/',
   validateRequest(CowValidation.createCowZodSchema),
   CowController.createCow
 );

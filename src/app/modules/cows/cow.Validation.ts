@@ -27,11 +27,13 @@ const createCowZodSchema = z.object({
     category: z.enum([...category] as [string, ...string[]], {
       required_error: 'Category is required',
     }),
-    // seller: z.string({
-    //   required_error: 'Seller is required',
-    // }),
+    seller: z.string({
+      required_error: 'Seller is required',
+    }),
   }),
 });
+
+
 const updateCowZodSchema = z.object({
   body: z.object({
     name: z
@@ -74,9 +76,11 @@ const updateCowZodSchema = z.object({
         required_error: 'Category is required',
       })
       .optional(),
-    // seller: z.string({
-    //   required_error: 'Seller is required',
-    // }),
+    seller: z
+      .string({
+        required_error: 'Seller is required',
+      })
+      .optional(),
   }),
 });
 
