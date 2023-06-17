@@ -3,6 +3,7 @@ import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import { IOrder } from './order.interface';
 import { Request, Response } from 'express';
+import { OrderService } from './order.Service';
 
 const createOrder = catchAsync(async (req: Request, res: Response) => {
   const { ...orderData } = req.body;
@@ -11,7 +12,7 @@ const createOrder = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IOrder>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Cow created successfully',
+    message: 'Orders retrieved successfully',
     data: result,
   });
 });
