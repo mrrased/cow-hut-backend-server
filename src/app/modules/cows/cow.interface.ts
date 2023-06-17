@@ -1,24 +1,25 @@
 import { Model } from 'mongoose';
-// import { IStudent } from '../student/student.interface';
 
-export type ILocation =
-  | 'Dhaka'
-  | 'Chattogram'
-  | 'Barishal'
-  | 'Rajshahi'
-  | 'Sylhet'
-  | 'Comilla'
-  | 'Rangpur'
-  | 'Mymensingh';
+export type ILocation = {
+  Dhaka: string;
+  Chattogram: string;
+  Barishal: string;
+  Rajshahi: string;
+  Sylhet: string;
+  Comilla: string;
+  Rangpur: string;
+  Mymensingh: string;
+};
 
-export type IBreed =
-  | 'Brahman'
-  | 'Nellore'
-  | 'Sahiwal'
-  | 'Gir'
-  | 'Indigenous'
-  | 'Tharparkar'
-  | 'Kankrej';
+export type IBreed = {
+  Brahman: string;
+  Nellore: string;
+  Sahiwal: string;
+  Gir: string;
+  Indigenous: string;
+  Tharparkar: string;
+  Kankrej: string;
+};
 
 export type ILevel = 'for sale' | 'sold out';
 

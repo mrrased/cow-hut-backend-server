@@ -143,8 +143,35 @@ const getSingleCow = async (id: string): Promise<ICow | null> => {
   return result;
 };
 
+const updateCow = async (
+  id: string,
+  payload: Partial<ICowFilters>
+): Promise<ICow | null> => {
+  // if (payload.name) {
+  //   if (!payload.name?.firstName) {
+  //     throw new ApiError(httpStatus.BAD_REQUEST, 'FirstName is required');
+  //   } else if (!payload.name?.lastName) {
+  //     throw new ApiError(httpStatus.BAD_REQUEST, 'LastName is required');
+  //   }
+  // }
+
+  const result = await Cow.findOneAndUpdate({ _id: id }, payload, {
+    new: true,
+  });
+
+  return result;
+};
+
+const deleteCow = async (id: string): Promise<ICow | null> => {
+  const result = await Cow.findByIdAndDelete(id);
+
+  return result;
+};
+
 export const CowService = {
   craeteCow,
   getAllCow,
   getSingleCow,
+  updateCow,
+  deleteCow,
 };
