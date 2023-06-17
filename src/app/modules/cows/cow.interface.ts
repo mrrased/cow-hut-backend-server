@@ -31,9 +31,16 @@ export type ICow = {
   location: ILocation;
   breed: IBreed;
   weight: number;
-  lebel: ILevel;
+  label: ILevel;
   category: ICategory;
-  seller: string;
+  // seller: string;
 };
 
 export type CowModel = Model<ICow, Record<string, unknown>>;
+
+export type ICowFilters = {
+  searchTerm?: string;
+  location?: string;
+  breed?: string;
+  category?: string;
+};

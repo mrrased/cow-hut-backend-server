@@ -86,16 +86,6 @@ const craeteUser = async (
   return createdUser;
 };
 
-// const craeteStudent = async (
-//   payload: IAcademicSemester
-// ): Promise<IAcademicSemester> => {
-//   if (academicSemesterTitleCodeMapper[payload.title] !== payload.code) {
-//     throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid Semester Code');
-//   }
-//   const result = await AcademicSemester.create(payload);
-//   return result;
-// };
-
 const getAllUsers = async (): Promise<IUser[]> => {
   const result = await User.find({});
 

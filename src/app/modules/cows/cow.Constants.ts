@@ -19,6 +19,15 @@ export const breed = [
   'Kankrej',
 ];
 
-export const lebel = ['for sale', 'sold out'];
+export const label = ['for sale', 'sold out'];
 
 export const category = ['Dairy', 'Beef', 'DualPurpose'];
+
+export const cowSearchableFields = ['location', 'breed', 'category'];
+
+export const CowFilterableFields = [
+  'searchTerm',
+  'location',
+  'breed',
+  'category',
+];

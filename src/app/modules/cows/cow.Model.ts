@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 import { CowModel, ICow } from './cow.interface';
-import { breed, category, lebel, location } from './cow.Constants';
+import { breed, category, label, location } from './cow.Constants';
 
 const cowSchema = new Schema<ICow>(
   {
@@ -28,18 +28,18 @@ const cowSchema = new Schema<ICow>(
       type: Number,
       required: true,
     },
-    lebel: {
+    label: {
       type: String,
-      enum: lebel,
+      enum: label,
     },
     category: {
       type: String,
       enum: category,
     },
-    seller: {
-      type: String,
-      required: true,
-    },
+    // seller: {
+    //   type: String,
+    //   required: true,
+    // },
   },
   {
     timestamps: true,
