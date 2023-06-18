@@ -28,11 +28,11 @@ const logger = createLogger({
     new DailyRotateFile({
       filename: path.join(
         // eslint-disable-next-line no-undef
-        process.cwd()
-        // 'logs',
-        // 'winston',
-        // 'successes',
-        // 'Cow-%DATE%-success.log'
+        process.cwd(),
+        'logs',
+        'winston',
+        'successes',
+        'Cow-%DATE%-success.log'
       ),
       datePattern: 'YYYY-MM-DD-HH',
       zippedArchive: true,
@@ -56,11 +56,11 @@ const errorLogger = createLogger({
     new DailyRotateFile({
       filename: path.join(
         // eslint-disable-next-line no-undef
-        process.cwd()
-        // 'logs',
-        // 'winston',
-        // 'errors',
-        // 'Cow-%DATE%-error.log'
+        process.cwd(),
+        'logs',
+        'winston',
+        'errors',
+        'Cow-%DATE%-error.log'
       ),
       datePattern: 'YYYY-MM-DD-HH',
       zippedArchive: true,
