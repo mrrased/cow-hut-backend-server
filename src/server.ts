@@ -24,9 +24,6 @@ async function main() {
   }
 
   process.on('unhandledRejection', error => {
-    console.log(
-      'unhandled Rejection is detected, we are closing our server.......'
-    );
     if (server) {
       server.close(() => {
         errorLogger.error(error);

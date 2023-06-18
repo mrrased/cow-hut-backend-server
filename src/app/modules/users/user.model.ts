@@ -40,30 +40,9 @@ const userSchema = new Schema<IUser>(
       type: Number,
       required: true,
     },
-    // createdAt: {
-    //   type: String,
-    // },
-    // updatedAt: {
-    //   type: String,
-    // },
-    // student: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'Student',
-    // },
-    // faculty: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'Faculty',
-    // },
-    // admin: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'Admin',
-    // },
   },
   {
     timestamps: true,
-    // toJSON: {
-    //   virtuals: true,
-    // },
   }
 );
 

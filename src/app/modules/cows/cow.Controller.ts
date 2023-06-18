@@ -68,8 +68,8 @@ const deleteCow = catchAsync(async (req: Request, res: Response) => {
   const result = await CowService.deleteCow(id);
 
   sendResponse<ICow>(res, {
-    statusCode: httpStatus.OK,
     success: true,
+    statusCode: httpStatus.OK,
     message: 'Cow deleted successfully',
     data: result,
   });
