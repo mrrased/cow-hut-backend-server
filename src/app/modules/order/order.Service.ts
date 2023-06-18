@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
 import ApiError from '../../../errors/ApiError';
 import { Cow } from '../cows/cow.Model';
-// import { ICow } from '../cows/cow.interface';
+import { ICow } from '../cows/cow.interface';
 // import { IUser } from '../users/user.interface';
 import { Order } from './order.Model';
 import { IOrder } from './order.interface';
 import { User } from '../users/user.model';
 import httpStatus from 'http-status';
+import { IUser } from '../users/user.interface';
 // import httpStatus from 'http-status';
 
 const craeteOrder = async (
@@ -25,30 +26,69 @@ const craeteOrder = async (
   // // set role
   // user.role = 'student';
 
-  const cowPrice = await Cow.findById(user.cow);
-  const buyerBudget = await User.findById(user.buyer);
+  const cow: ICow | null = await Cow.findById(user.cow);
+  const buyer: IUser | null = await User.findById(user.buyer);
+  const seller: IUser | null = await User.findById(cow?.seller);
 
-  console.log(cowPrice?.price, 'cow price');
-  console.log(buyerBudget?.budget, 'buyer price');
+  console.log(cow?.price, 'cow price');
+  console.log(buyer?.budget, 'buyer price');
+  console.log(seller?.income, 'seller income price');
+
+  if (cow && buyer) {
+    if (cow?.price > buyer?.budget) {
+      throw new ApiError(
+        httpStatus.BAD_REQUEST,
+        'Your Need More Budget buying This Cow'
+      );
+    }
+  }
 
   const session = await mongoose.startSession();
 
+  let result = null;
+  let update = null;
+  let sellerUpadte = null;
+
   try {
     session.startTransaction();
+    if (cow && buyer && seller) {
+      const subBuyerBudget = buyer.budget - cow.price;
+      buyer.budget = subBuyerBudget;
+      update = await User.findOneAndUpdate(
+        { _id: user.buyer },
+        { $set: buyer },
+        {
+          new: true,
+        }
+      );
 
-    if (cowPrice && buyerBudget) {
-      if (cowPrice?.price > buyerBudget?.budget) {
-        throw new ApiError(
-          httpStatus.BAD_REQUEST,
-          'Your Need More Budget buying This Cow'
-        );
-      }
+      seller.income = cow.price;
+      sellerUpadte = await User.findOneAndUpdate(
+        { _id: cow.seller },
+        { $set: seller },
+        {
+          new: true,
+        }
+      );
     }
+
+    if (cow) {
+      cow.label = 'sold out';
+      result = await Cow.findOneAndUpdate(
+        { _id: user.cow },
+        { $set: cow },
+        {
+          new: true,
+        }
+      );
+    }
+    // cow?.label
   } catch (error) {
     await session.abortTransaction();
     await session.endSession();
     throw error;
   }
+  console.log(result, update, sellerUpadte, 'updated cow and buyer and seller');
   // const academicSemester = await AcademicSemester.findById(
   //   student.academicSemester
   // );
