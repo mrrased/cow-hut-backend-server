@@ -16,9 +16,6 @@ const orderSchema = new Schema<IOrder>(
   },
   {
     timestamps: true,
-    // toJSON: {
-    //   virtuals: true,
-    // },
   }
 );
 
