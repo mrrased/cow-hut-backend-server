@@ -76,6 +76,13 @@ const craeteOrder = async (user: IOrder): Promise<IOrder | null> => {
   return createdOrder;
 };
 
+const getAllOrder = async (): Promise<IOrder[]> => {
+  const result = await Order.find({});
+
+  return result;
+};
+
 export const OrderService = {
   craeteOrder,
+  getAllOrder,
 };
