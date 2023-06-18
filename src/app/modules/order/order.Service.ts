@@ -1,9 +1,18 @@
+import mongoose from 'mongoose';
 import ApiError from '../../../errors/ApiError';
+import { Cow } from '../cows/cow.Model';
+// import { ICow } from '../cows/cow.interface';
+// import { IUser } from '../users/user.interface';
 import { Order } from './order.Model';
 import { IOrder } from './order.interface';
+import { User } from '../users/user.model';
+import httpStatus from 'http-status';
+// import httpStatus from 'http-status';
 
 const craeteOrder = async (
   // student: IStudent,
+  // cow: ICow,
+  // buyer: IUser,
   user: IOrder
 ): Promise<IOrder | null> => {
   // auto generated incremental id
@@ -16,6 +25,30 @@ const craeteOrder = async (
   // // set role
   // user.role = 'student';
 
+  const cowPrice = await Cow.findById(user.cow);
+  const buyerBudget = await User.findById(user.buyer);
+
+  console.log(cowPrice?.price, 'cow price');
+  console.log(buyerBudget?.budget, 'buyer price');
+
+  const session = await mongoose.startSession();
+
+  try {
+    session.startTransaction();
+
+    if (cowPrice && buyerBudget) {
+      if (cowPrice?.price > buyerBudget?.budget) {
+        throw new ApiError(
+          httpStatus.BAD_REQUEST,
+          'Your Need More Budget buying This Cow'
+        );
+      }
+    }
+  } catch (error) {
+    await session.abortTransaction();
+    await session.endSession();
+    throw error;
+  }
   // const academicSemester = await AcademicSemester.findById(
   //   student.academicSemester
   // );
