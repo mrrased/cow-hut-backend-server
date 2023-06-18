@@ -124,6 +124,11 @@
             "date": 1687075589387,
             "name": "E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\logs\\winston\\errors\\Cow-2023-06-18-14-error.log",
             "hash": "c678eca10bb43667a3a5e9fb65ef7662bcb7333339dd87f131ba880d4bd9a4ec"
+        },
+        {
+            "date": 1687078924591,
+            "name": "E:\\Programing Hero\\New folder\\Cow Hut Backend Server\\logs\\winston\\errors\\Cow-2023-06-18-15-error.log",
+            "hash": "da02bb3ca9ed7478d68363a05b5578eabdc5e1142ed98595b69c5548322d8115"
         }
     ],
     "hashType": "sha256"
