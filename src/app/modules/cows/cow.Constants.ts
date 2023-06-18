@@ -23,7 +23,17 @@ export const label = ['for sale', 'sold out'];
 
 export const category = ['Dairy', 'Beef', 'DualPurpose'];
 
-export const cowSearchableFields = ['location', 'breed', 'category'];
+export const sortBy = 'price';
+
+export const cowSearchableFields = [
+  'location',
+  'breed',
+  'category',
+  'sortBy',
+  'sortOrder',
+  'minPrice',
+  'maxPrice',
+];
 
 export const CowFilterableFields = [
   'searchTerm',
@@ -33,4 +43,14 @@ export const CowFilterableFields = [
   'price',
   'maxPrice',
   'minPrice',
+];
+
+export const breedData = [
+  'Brahman',
+  'Nellore',
+  'Sahiwal',
+  'Gir',
+  'Indigenous',
+  'Tharparkar',
+  'Kankrej',
 ];

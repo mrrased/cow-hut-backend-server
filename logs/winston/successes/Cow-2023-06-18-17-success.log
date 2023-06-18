@@ -3,40 +3,54 @@
   level: 'info',
   service: 'user-service',
   label: 'COW',
-  timestamp: '2023-06-18T09:02:08.328Z'
+  timestamp: '2023-06-18T11:30:50.726Z'
 }
 {
   message: 'Application listening on port 5000',
   level: 'info',
   service: 'user-service',
   label: 'COW',
-  timestamp: '2023-06-18T09:02:08.356Z'
+  timestamp: '2023-06-18T11:30:50.775Z'
 }
 {
   message: 'Database is connected successfully',
   level: 'info',
   service: 'user-service',
   label: 'COW',
-  timestamp: '2023-06-18T09:03:14.407Z'
+  timestamp: '2023-06-18T11:39:43.402Z'
 }
 {
   message: 'Application listening on port 5000',
   level: 'info',
   service: 'user-service',
   label: 'COW',
-  timestamp: '2023-06-18T09:03:14.440Z'
+  timestamp: '2023-06-18T11:39:43.425Z'
 }
 {
   message: 'Database is connected successfully',
   level: 'info',
   service: 'user-service',
   label: 'COW',
-  timestamp: '2023-06-18T09:30:57.411Z'
+  timestamp: '2023-06-18T11:40:41.427Z'
 }
 {
   message: 'Application listening on port 5000',
   level: 'info',
   service: 'user-service',
   label: 'COW',
-  timestamp: '2023-06-18T09:30:57.438Z'
+  timestamp: '2023-06-18T11:40:41.455Z'
+}
+{
+  message: 'Database is connected successfully',
+  level: 'info',
+  service: 'user-service',
+  label: 'COW',
+  timestamp: '2023-06-18T11:58:19.165Z'
+}
+{
+  message: 'Application listening on port 5000',
+  level: 'info',
+  service: 'user-service',
+  label: 'COW',
+  timestamp: '2023-06-18T11:58:19.193Z'
 }

@@ -45,4 +45,6 @@ export type ICowFilters = {
   location?: string;
   breed?: string;
   category?: string;
+  minPrice?: number;
+  maxPrice?: number;
 };

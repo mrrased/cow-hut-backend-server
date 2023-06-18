@@ -6,6 +6,7 @@ import { IPaginationOPtions } from '../../../interfaces/pagination';
 import { cowSearchableFields } from './cow.Constants';
 import { Cow } from './cow.Model';
 import { ICow, ICowFilters } from './cow.interface';
+// import { Schema } from 'mongoose';
 // import { IUser } from '../users/user.interface';
 
 const craeteCow = async (user: ICow): Promise<ICow | null> => {
@@ -21,10 +22,20 @@ const getAllCow = async (
   filters: Partial<ICowFilters>,
   paginationOptions: Partial<IPaginationOPtions>
 ): Promise<IGenericResponse<ICow[]>> => {
-  const { searchTerm, ...filtersData } = filters;
+  const { searchTerm, location, minPrice, maxPrice, ...filtersData } = filters;
+
+  const { page, limit, skip, sortBy, sortOrder } =
+    paginationHelpers.caculatePagination(paginationOptions);
+
+  //  // Default to sorting by "price" if not provided
+  // const minPrice = parseInt(req.query.minPrice) || 0; // Default to 0 if not provided
+  // const maxPrice = parseInt(req.query.maxPrice) || Infinity; // Default to Infinity if not provided
+
+  // // Build the filter object based on the provided query parameters
+  // const filter = {
+  //   price: { $gte: minPrice, $lte: maxPrice },
 
   const andConditions = [];
-
   if (searchTerm) {
     andConditions.push({
       $or: cowSearchableFields.map(field => ({
@@ -34,7 +45,36 @@ const getAllCow = async (
         },
       })),
     });
+  } else if (location) {
+    andConditions.push({
+      $or: cowSearchableFields.map(field => ({
+        [field]: {
+          $regex: location,
+          $options: 'i',
+        },
+      })),
+    });
   }
+
+  if (minPrice && maxPrice) {
+    andConditions.push({ price: { $gte: minPrice, $lte: maxPrice } });
+  }
+
+  // console.log(minPrice, r, 'min price');
+  // console.log(maxPrice, 'max price');
+
+  // const sortCondition: { [key: string]: Schema.Types.Number } = 0;
+
+  // if (Object.keys(filtersData).length) {
+  //   andConditions.push({
+  //     price: cowSearchableFields.map(field => ({
+  //       [field]: {
+  //         $gte: parseInt(minPrice),
+  //         $lte: parseInt(maxPrice),
+  //       },
+  //     })),
+  //   });
+  // }
 
   if (Object.keys(filtersData).length) {
     andConditions.push({
@@ -44,13 +84,12 @@ const getAllCow = async (
     });
   }
 
-  const { page, limit, skip, sortBy, sortOrder } =
-    paginationHelpers.caculatePagination(paginationOptions);
+  const sortBys = sortBy || 'price';
 
   const sortConditions: { [key: string]: SortOrder } = {};
 
-  if (sortBy && sortOrder) {
-    sortConditions[sortBy] = sortOrder;
+  if (sortBys && sortOrder) {
+    sortConditions[sortBys] = sortOrder;
   }
 
   const whereConditions =
