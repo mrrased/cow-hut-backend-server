@@ -1,8 +1,8 @@
+
 /* eslint-disable no-unused-vars */
 import { Model } from 'mongoose';
 
 export type IUser = {
-  _id: string;
   phoneNumber: string;
   role: string;
   password: string;
@@ -15,6 +15,7 @@ export type IUser = {
   income: number;
 };
 
+
 export type UserModel = {
   isUserExist(
     phoneNumber: string
@@ -25,4 +26,3 @@ export type UserModel = {
   ): Promise<boolean>;
 } & Model<IUser>;
 
-// export type UserModel = Model<IUser, Record<string, unknown>>;

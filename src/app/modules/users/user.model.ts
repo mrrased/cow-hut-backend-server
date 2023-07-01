@@ -4,6 +4,7 @@ import { role } from './user.Constant';
 import bcrypt from 'bcrypt';
 import Config from '../../../Config';
 
+
 const userSchema = new Schema<IUser>(
   {
     _id: {
@@ -76,5 +77,6 @@ userSchema.pre('save', async function (next) {
 
   next();
 });
+
 
 export const User = model<IUser, UserModel>('User', userSchema);
