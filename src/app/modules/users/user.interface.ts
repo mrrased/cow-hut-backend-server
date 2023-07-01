@@ -1,8 +1,8 @@
-
 /* eslint-disable no-unused-vars */
 import { Model } from 'mongoose';
 
 export type IUser = {
+  _id:string;
   phoneNumber: string;
   role: string;
   password: string;
