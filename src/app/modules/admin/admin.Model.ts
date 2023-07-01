@@ -1,15 +1,11 @@
 import { Schema, model } from 'mongoose';
-import { IUser, UserModel } from './user.interface';
-import { role } from './user.Constant';
+import { AdminModel, IAdmin } from './admin.Interface';
+import { role } from './admin.Constant';
 import bcrypt from 'bcrypt';
 import Config from '../../../Config';
 
-
-const userSchema = new Schema<IUser>(
+const adminSchema = new Schema<IAdmin>(
   {
-    _id: {
-      type: String,
-    },
     phoneNumber: {
       type: String,
       required: true,
@@ -38,38 +34,30 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
     },
-    budget: {
-      type: Number,
-      required: true,
-    },
-    income: {
-      type: Number,
-      required: true,
-    },
   },
   {
     timestamps: true,
   }
 );
 
-userSchema.statics.isUserExist = async function (
+adminSchema.statics.isAdminExist = async function (
   phoneNumber: string
-): Promise<Pick<IUser, 'phoneNumber' | 'password' | 'role' | '_id'> | null> {
-  return await User.findOne(
+): Promise<Pick<IAdmin, 'phoneNumber' | 'password' | 'role' | '_id'> | null> {
+  return await Admin.findOne(
     { phoneNumber },
-    { phoneNumber: 1, password: 1, role: 1, id: 1 }
+    { phoneNumber: 1, password: 1, role: 1 }
   );
 };
 
-userSchema.statics.isPasswordMatched = async function (
+adminSchema.statics.isPasswordMatched = async function (
   givenPassword: string,
   savedPassword: string
 ): Promise<boolean> {
   return await bcrypt.compare(givenPassword, savedPassword);
 };
 
-userSchema.pre('save', async function (next) {
-  // hashing user password
+adminSchema.pre('save', async function (next) {
+  // hashing admin password
   this.password = await bcrypt.hash(
     this.password,
     Number(Config.bcrypt_salt_rounds)
@@ -78,5 +66,4 @@ userSchema.pre('save', async function (next) {
   next();
 });
 
-
-export const User = model<IUser, UserModel>('User', userSchema);
+export const Admin = model<IAdmin, AdminModel>('Admin', adminSchema);
