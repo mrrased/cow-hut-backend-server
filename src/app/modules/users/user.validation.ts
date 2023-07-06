@@ -81,7 +81,42 @@ const updateUserZodSchema = z.object({
   }),
 });
 
+const updateProfileZodSchema = z.object({
+  body: z.object({
+    phoneNumber: z
+      .string({
+        required_error: 'Phone Number is required',
+      })
+      .optional(),
+    password: z
+      .string({
+        required_error: 'Password is required',
+      })
+      .optional(),
+    name: z
+      .object({
+        firstName: z
+          .string({
+            required_error: 'First name is required',
+          })
+          .optional(),
+        lastName: z
+          .string({
+            required_error: 'Last name is required',
+          })
+          .optional(),
+      })
+      .optional(),
+    address: z
+      .string({
+        required_error: 'Address is required',
+      })
+      .optional(),
+  }),
+});
+
 export const UserValidation = {
   createUserZodSchema,
   updateUserZodSchema,
+  updateProfileZodSchema,
 };

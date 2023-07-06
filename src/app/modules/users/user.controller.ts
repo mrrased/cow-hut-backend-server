@@ -4,6 +4,7 @@ import catchAsync from '../../../shared/catchAsync';
 import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
 import { IUser } from './user.interface';
+import ApiError from '../../../errors/ApiError';
 
 const createUser = catchAsync(async (req: Request, res: Response) => {
   const { ...userData } = req.body;
@@ -23,7 +24,7 @@ const getAllUsers = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IUser[]>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'Users retrieved successfully',
+    message: 'get retrieved successfully',
     data: result,
   });
 });
@@ -36,7 +37,7 @@ const getSingleUser = catchAsync(async (req: Request, res: Response) => {
   sendResponse<IUser>(res, {
     success: true,
     statusCode: httpStatus.OK,
-    message: 'User retrieved successfully',
+    message: 'single retrieved successfully',
     data: result,
   });
 });
@@ -68,10 +69,51 @@ const deleteUser = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const getMyProfile = catchAsync(async (req: Request, res: Response) => {
+  const { authorization } = req.headers;
+  if (!authorization) {
+    throw new ApiError(
+      httpStatus.UNAUTHORIZED,
+      'Authorization header is missing'
+    );
+  }
+  const result = await UserService.getMyProfile(authorization);
+
+  sendResponse<IUser>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "User's information retrieved successfully",
+    data: result,
+  });
+});
+
+const updateProfile = catchAsync(async (req: Request, res: Response) => {
+  const { authorization } = req.headers;
+  const { ...updatedData } = req.body;
+
+  if (!authorization) {
+    throw new ApiError(
+      httpStatus.UNAUTHORIZED,
+      'Authorization header is missing'
+    );
+  }
+
+  const result = await UserService.updateProfile(authorization, updatedData);
+
+  sendResponse<IUser>(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "User's information retrieved successfully",
+    data: result,
+  });
+});
+
 export const UserController = {
   createUser,
   getAllUsers,
   getSingleUser,
   updateUser,
   deleteUser,
+  getMyProfile,
+  updateProfile,
 };
