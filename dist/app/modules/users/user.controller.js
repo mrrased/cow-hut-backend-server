@@ -28,6 +28,7 @@ const user_service_1 = require("./user.service");
 const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
 const http_status_1 = __importDefault(require("http-status"));
+const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
 const createUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const userData = __rest(req.body, []);
     const result = yield user_service_1.UserService.craeteUser(userData);
@@ -43,7 +44,7 @@ const getAllUsers = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, vo
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: 'Users retrieved successfully',
+        message: 'get retrieved successfully',
         data: result,
     });
 }));
@@ -53,7 +54,7 @@ const getSingleUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: 'User retrieved successfully',
+        message: 'single retrieved successfully',
         data: result,
     });
 }));
@@ -78,10 +79,39 @@ const deleteUser = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
         data: result,
     });
 }));
+const getMyProfile = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { authorization } = req.headers;
+    if (!authorization) {
+        throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, 'Authorization header is missing');
+    }
+    const result = yield user_service_1.UserService.getMyProfile(authorization);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: "User's information retrieved successfully",
+        data: result,
+    });
+}));
+const updateProfile = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { authorization } = req.headers;
+    const updatedData = __rest(req.body, []);
+    if (!authorization) {
+        throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, 'Authorization header is missing');
+    }
+    const result = yield user_service_1.UserService.updateProfile(authorization, updatedData);
+    (0, sendResponse_1.default)(res, {
+        success: true,
+        statusCode: http_status_1.default.OK,
+        message: "User's information retrieved successfully",
+        data: result,
+    });
+}));
 exports.UserController = {
     createUser,
     getAllUsers,
     getSingleUser,
     updateUser,
     deleteUser,
+    getMyProfile,
+    updateProfile,
 };

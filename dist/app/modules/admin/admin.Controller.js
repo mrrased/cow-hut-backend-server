@@ -23,47 +23,40 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OrderController = void 0;
+exports.AdminController = void 0;
 const http_status_1 = __importDefault(require("http-status"));
-const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../../shared/sendResponse"));
-const order_Service_1 = require("./order.Service");
-const ApiError_1 = __importDefault(require("../../../errors/ApiError"));
-const createOrder = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const orderData = __rest(req.body, []);
-    const result = yield order_Service_1.OrderService.craeteOrder(orderData);
+const catchAsync_1 = __importDefault(require("../../../shared/catchAsync"));
+const admin_Service_1 = require("./admin.Service");
+const Config_1 = __importDefault(require("../../../Config"));
+const createAdmin = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const adminData = __rest(req.body, []);
+    const result = yield admin_Service_1.AdminService.craeteAdmin(adminData);
     (0, sendResponse_1.default)(res, {
         success: true,
         statusCode: http_status_1.default.OK,
-        message: 'Orders retrieved successfully',
+        message: 'Admin created successfully',
         data: result,
     });
 }));
-const getAllOrder = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield order_Service_1.OrderService.getAllOrder();
+const loginAdmin = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const loginData = __rest(req.body, []);
+    const result = yield admin_Service_1.AdminService.loginAdmin(loginData);
+    const { refreshToken } = result, others = __rest(result, ["refreshToken"]);
+    // set refresh token into cookie
+    const cookieOptions = {
+        secure: Config_1.default.env === 'production',
+        httpOnly: true,
+    };
+    res.cookie('refreshToken', refreshToken, cookieOptions);
     (0, sendResponse_1.default)(res, {
-        success: true,
         statusCode: http_status_1.default.OK,
-        message: 'Orders retrieved successfully',
-        data: result,
+        success: true,
+        message: 'Admin logged in successfully !',
+        data: others,
     });
 }));
-const getSingleOrder = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.params.id;
-    const { authorization } = req.headers;
-    if (!authorization) {
-        throw new ApiError_1.default(http_status_1.default.UNAUTHORIZED, 'Authorization header is missing');
-    }
-    const result = yield order_Service_1.OrderService.getSingleOrder(id, authorization);
-    (0, sendResponse_1.default)(res, {
-        success: true,
-        statusCode: http_status_1.default.OK,
-        message: 'Order information retrieved successfully',
-        data: result,
-    });
-}));
-exports.OrderController = {
-    createOrder,
-    getAllOrder,
-    getSingleOrder,
+exports.AdminController = {
+    createAdmin,
+    loginAdmin,
 };

@@ -19,6 +19,8 @@ const cow_Model_1 = require("../cows/cow.Model");
 const order_Model_1 = require("./order.Model");
 const user_model_1 = require("../users/user.model");
 const http_status_1 = __importDefault(require("http-status"));
+const jwt_Helpers_1 = require("../../../helpers/jwt.Helpers");
+const Config_1 = __importDefault(require("../../../Config"));
 const craeteOrder = (user) => __awaiter(void 0, void 0, void 0, function* () {
     const cow = yield cow_Model_1.Cow.findById(user.cow);
     const buyer = yield user_model_1.User.findById(user.buyer);
@@ -67,7 +69,39 @@ const getAllOrder = () => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield order_Model_1.Order.find({});
     return result;
 });
+const getSingleOrder = (id, token) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b, _c, _d;
+    let verifiedToken = null;
+    try {
+        verifiedToken = jwt_Helpers_1.jwtHelpers.verifyToken(token, Config_1.default.jwt.secret);
+    }
+    catch (err) {
+        throw new ApiError_1.default(http_status_1.default.FORBIDDEN, 'Invalid Token');
+    }
+    const { _id, role } = verifiedToken;
+    let result = null;
+    if (role) {
+        result = yield order_Model_1.Order.findById(id)
+            .populate('cow')
+            .populate('cow.seller')
+            .populate('buyer');
+        if (role === 'admin') {
+            return result;
+        }
+        else if (((_b = (_a = result === null || result === void 0 ? void 0 : result.buyer) === null || _a === void 0 ? void 0 : _a._id) === null || _b === void 0 ? void 0 : _b.toString()) === _id) {
+            return result;
+        }
+        else if (((_d = (_c = result === null || result === void 0 ? void 0 : result.cow) === null || _c === void 0 ? void 0 : _c.seller) === null || _d === void 0 ? void 0 : _d.toString()) === _id) {
+            return result;
+        }
+    }
+    else {
+        throw new ApiError_1.default(http_status_1.default.FORBIDDEN, 'Invalid Id');
+    }
+    return result;
+});
 exports.OrderService = {
     craeteOrder,
     getAllOrder,
+    getSingleOrder,
 };
