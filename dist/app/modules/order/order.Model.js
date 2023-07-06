@@ -5,13 +5,17 @@ const mongoose_1 = require("mongoose");
 const orderSchema = new mongoose_1.Schema({
     cow: {
         type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'cows',
+        ref: 'Cow',
         required: true,
     },
     buyer: {
         type: mongoose_1.Schema.Types.ObjectId,
-        ref: 'users',
+        ref: 'User',
         required: true,
+    },
+    seller: {
+        type: mongoose_1.Schema.Types.ObjectId,
+        ref: 'User',
     },
 }, {
     timestamps: true,
