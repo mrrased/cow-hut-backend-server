@@ -1,7 +1,9 @@
 {
   "name": "cow-hut-backend-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
     "start":"node dist/server.js",
