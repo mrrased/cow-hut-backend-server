@@ -7,6 +7,9 @@ import { IOrder } from './order.interface';
 import { User } from '../users/user.model';
 import httpStatus from 'http-status';
 import { IUser } from '../users/user.interface';
+import { jwtHelpers } from '../../../helpers/jwt.Helpers';
+import Config from '../../../Config';
+import { Secret } from 'jsonwebtoken';
 
 const craeteOrder = async (user: IOrder): Promise<IOrder | null> => {
   const cow: ICow | null = await Cow.findById(user.cow);
@@ -82,7 +85,42 @@ const getAllOrder = async (): Promise<IOrder[]> => {
   return result;
 };
 
+const getSingleOrder = async (
+  id: string,
+  token: string
+): Promise<IOrder | null> => {
+  let verifiedToken = null;
+
+  try {
+    verifiedToken = jwtHelpers.verifyToken(token, Config.jwt.secret as Secret);
+  } catch (err) {
+    throw new ApiError(httpStatus.FORBIDDEN, 'Invalid Token');
+  }
+
+  const { _id, role } = verifiedToken;
+  let result = null;
+
+  if (role) {
+    result = await Order.findById(id)
+      .populate('cow')
+      .populate('cow.seller')
+      .populate('buyer');
+    if (role === 'admin') {
+      return result;
+    } else if (result?.buyer?._id?.toString() === _id) {
+      return result;
+    } else if (result?.cow?.seller?.toString() === _id) {
+      return result;
+    }
+  } else {
+    throw new ApiError(httpStatus.FORBIDDEN, 'Invalid Id');
+  }
+
+  return result;
+};
+
 export const OrderService = {
   craeteOrder,
   getAllOrder,
+  getSingleOrder,
 };

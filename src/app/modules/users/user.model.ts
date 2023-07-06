@@ -1,15 +1,11 @@
-import { Schema, model } from 'mongoose';
+import { FilterQuery, Schema, model } from 'mongoose';
 import { IUser, UserModel } from './user.interface';
 import { role } from './user.Constant';
 import bcrypt from 'bcrypt';
 import Config from '../../../Config';
 
-
 const userSchema = new Schema<IUser>(
   {
-    _id: {
-      type: String,
-    },
     phoneNumber: {
       type: String,
       required: true,
@@ -53,12 +49,27 @@ const userSchema = new Schema<IUser>(
 );
 
 userSchema.statics.isUserExist = async function (
-  phoneNumber: string
+  phoneNumber: string,
+  _id: string
 ): Promise<Pick<IUser, 'phoneNumber' | 'password' | 'role' | '_id'> | null> {
-  return await User.findOne(
-    { phoneNumber },
-    { phoneNumber: 1, password: 1, role: 1, id: 1 }
-  );
+  const query: FilterQuery<IUser> = {};
+
+  if (phoneNumber) {
+    query['phoneNumber'] = phoneNumber;
+  }
+
+  if (_id) {
+    query['_id'] = _id;
+  }
+
+  const selectedFields = {
+    phoneNumber: 1,
+    password: 1,
+    role: 1,
+    _id: 1,
+  };
+
+  return await User.findOne(query, selectedFields);
 };
 
 userSchema.statics.isPasswordMatched = async function (
@@ -77,6 +88,5 @@ userSchema.pre('save', async function (next) {
 
   next();
 });
-
 
 export const User = model<IUser, UserModel>('User', userSchema);

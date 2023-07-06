@@ -5,13 +5,17 @@ const orderSchema = new Schema<IOrder>(
   {
     cow: {
       type: Schema.Types.ObjectId,
-      ref: 'cows',
+      ref: 'Cow',
       required: true,
     },
     buyer: {
       type: Schema.Types.ObjectId,
-      ref: 'users',
+      ref: 'User',
       required: true,
+    },
+    seller: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
     },
   },
   {

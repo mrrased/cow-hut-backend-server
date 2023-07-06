@@ -34,7 +34,7 @@ const loginAdmin = catchAsync(async (req: Request, res: Response) => {
   sendResponse<ILoginAdminResponse>(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Admin loggedin successfully !',
+    message: 'Admin logged in successfully !',
     data: others,
   });
 });

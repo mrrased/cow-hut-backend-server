@@ -23,7 +23,6 @@ const loginUsers = async (
   if (!isUserExist) {
     throw new ApiError(httpStatus.NOT_FOUND, 'Admin does not exist');
   }
-
   // Matched Password
   if (
     isUserExist &&

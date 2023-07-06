@@ -12,7 +12,13 @@ const craeteAdmin = async (admin: IAdmin): Promise<IAdmin | null> => {
     throw new ApiError(400, 'Failed to create user!');
   }
 
-  return createdUser;
+  // Select specific fields to include in the result
+  const result = await Admin.findById(createdUser._id)
+    .select('_id role name phoneNumber address')
+    .lean()
+    .exec();
+
+  return result;
 };
 
 const loginAdmin = async (

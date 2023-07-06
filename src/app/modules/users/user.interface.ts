@@ -2,7 +2,7 @@
 import { Model } from 'mongoose';
 
 export type IUser = {
-  _id:string;
+  _id?: string;
   phoneNumber: string;
   role: string;
   password: string;
@@ -15,7 +15,6 @@ export type IUser = {
   income: number;
 };
 
-
 export type UserModel = {
   isUserExist(
     phoneNumber: string
@@ -25,4 +24,3 @@ export type UserModel = {
     savePassword: string
   ): Promise<boolean>;
 } & Model<IUser>;
-
